@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 15, 2023 at 01:34 PM
+-- Generation Time: May 17, 2023 at 07:26 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -31,7 +31,6 @@ CREATE TABLE `billets` (
   `id` int NOT NULL,
   `spectacle_id` int NOT NULL,
   `number_person` int NOT NULL,
-  `price` decimal(8,2) NOT NULL,
   `Last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `First_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -42,13 +41,13 @@ CREATE TABLE `billets` (
 -- Dumping data for table `billets`
 --
 
-INSERT INTO `billets` (`id`, `spectacle_id`, `number_person`, `price`, `Last_name`, `First_name`, `email`, `phone`) VALUES
-(1, 5, 4, '18.00', 'Baba', 'Baby', 'babababy@yahoo.fr', 662626262),
-(2, 6, 7, '20.00', 'Manie', 'Marie', 'maniemarie@yahoo.fr', 700023322),
-(3, 4, 3, '0.00', 'Obi', 'Oto', 'obioto@yahoo.fr', 763524152),
-(4, 3, 2, '12.00', 'Sassa', 'Sona', 'sassasona@yahoo.fr', 121614151),
-(5, 1, 4, '0.00', 'Simon', 'Celio', 'simoncelio@yahoo.fr', 203066511),
-(6, 2, 6, '20.00', 'Oba', 'Toto', 'obatito@yahoo.fr', 663524152);
+INSERT INTO `billets` (`id`, `spectacle_id`, `number_person`, `Last_name`, `First_name`, `email`, `phone`) VALUES
+(1, 5, 4, 'Baba', 'Baby', 'babababy@yahoo.fr', 662626262),
+(2, 6, 5, 'Manie', 'Marie', 'maniemarie@yahoo.fr', 700023322),
+(3, 4, 3, 'Obi', 'Oto', 'obioto@yahoo.fr', 763524152),
+(4, 3, 2, 'Sassa', 'Sona', 'sassasona@yahoo.fr', 121614151),
+(5, 1, 4, 'Simon', 'Celio', 'simoncelio@yahoo.fr', 203066511),
+(6, 2, 5, 'Oba', 'Toto', 'obatito@yahoo.fr', 663524152);
 
 -- --------------------------------------------------------
 
@@ -86,21 +85,26 @@ CREATE TABLE `spectacles` (
   `id` int NOT NULL,
   `salle_id` int NOT NULL,
   `spectacle_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `spectacle_description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
-  `number_place_dispo` int NOT NULL
+  `price` decimal(8,2) DEFAULT NULL,
+  `number_place_dispo` int DEFAULT NULL,
+  `spectacle_timing` time DEFAULT NULL,
+  `spectacle_start` time DEFAULT NULL,
+  `spectacle_end` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `spectacles`
 --
 
-INSERT INTO `spectacles` (`id`, `salle_id`, `spectacle_name`, `date`, `number_place_dispo`) VALUES
-(1, 1, 'Lightroom', '2023-05-30 09:49:06', 50),
-(2, 2, 'Happy', '2023-05-01 12:12:36', 50),
-(3, 3, 'Hello', '2023-04-10 12:12:36', 50),
-(4, 4, 'Whiteroom', '2023-06-20 12:12:36', 50),
-(5, 5, 'Good', '2023-06-10 12:12:36', 50),
-(6, 6, 'Rap', '2023-06-10 12:12:36', 50);
+INSERT INTO `spectacles` (`id`, `salle_id`, `spectacle_name`, `spectacle_description`, `date`, `price`, `number_place_dispo`, `spectacle_timing`, `spectacle_start`, `spectacle_end`) VALUES
+(1, 1, 'Lightroom', 'dfjfffnkdfnklonk^f^dfkbnkb,kxcvbkls<dsnj^>>KINNNGS>IDFNdgfs$nsfpkdpfkp,d', '2023-05-30 11:00:00', '0.00', 22, '04:00:00', '11:00:00', '15:00:00'),
+(2, 2, 'Happy', 'dfjfffnkdfnklonk^f^dfkbnkb,kxcvbkls<dsnj^>>KINNNGS>IDFNdgfs$nsfpkdpfkp,d', '2023-05-01 11:00:00', '20.00', 50, '03:00:00', '11:00:00', '14:00:00'),
+(3, 3, 'Hello', 'dfjfffnkdfnklonk^f^dfkbnkb,kxcvbkls<dsnj^>>KINNNGS>IDFNdgfs$nsfpkdpfkp,d', '2023-06-20 11:00:00', '12.00', 22, '05:00:00', '11:00:00', '16:00:00'),
+(4, 4, 'Whiteroom', 'dfjfffnkdfnklonk^f^dfkbnkb,kxcvbkls<dsnj^>>KINNNGS>IDFNdgfs$nsfpkdpfkp,d', '2023-06-20 10:00:00', '0.00', 22, '02:00:00', '10:00:00', '12:00:00'),
+(5, 5, 'Good', 'dfjfffnkdfnklonk^f^dfkbnkb,kxcvbkls<dsnj^>>KINNNGS>IDFNdgfs$nsfpkdpfkp,d', '2023-06-10 10:00:00', '18.00', 22, '06:00:00', '10:00:00', '16:00:00'),
+(6, 6, 'Rap', 'dfjfffnkdfnklonk^f^dfkbnkb,kxcvbkls<dsnj^>>KINNNGS>IDFNdgfs$nsfpkdpfkp,d', '2023-04-10 10:00:00', '20.00', 50, '02:00:00', '10:00:00', '12:00:00');
 
 --
 -- Indexes for dumped tables
